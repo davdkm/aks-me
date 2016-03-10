@@ -11,5 +11,4 @@ use Rack::MethodOverride
 use QuestionsController
 use CommentsController
 use UsersController
-use GroupsController
 run ApplicationController

@@ -15,16 +15,15 @@ ActiveRecord::Schema.define(version: 20160310030343) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "groups", force: :cascade do |t|
-    t.string "name"
+    t.integer  "question_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "questions", force: :cascade do |t|
     t.string   "content"
+    t.string   "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
