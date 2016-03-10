@@ -10,6 +10,6 @@ end
 use Rack::MethodOverride
 use QuestionsController
 use CommentsController
-use UserController
+use UsersController
 use GroupsController
 run ApplicationController
