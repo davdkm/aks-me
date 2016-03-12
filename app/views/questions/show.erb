@@ -1,0 +1,13 @@
+<h2><a href="/users/<%= @question.author.slug %>"><%= @question.author.username %></a> aksed:</h2>
+<p>
+  <%= @question.content %>
+</p>
+
+<form action="/questions/<%= @question.id %>" method="get">
+  <input type="button" name="edit" value="Edit Question">
+</form>
+
+<form action="/questions/<%= @question.id %>/delete" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <button type="submit" name="delete">Delete Question</button>
+</form>

@@ -1,0 +1,7 @@
+<h3><%= @user.username %> aksed:</h3>
+
+<ul>
+  <% @user.authored_questions.each do |question| %>
+    <li><a href="/questions/<%= question.id %>"><%= question.content %></a></li>
+  <% end %>
+</ul>

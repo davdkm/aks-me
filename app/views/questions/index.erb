@@ -1,0 +1,11 @@
+<h1>What people are aksing</h1>
+
+<% if logged_in? %>
+  <h2>Welcome, <%= current_user.username %></h2>
+  <% Question.all.each do |question| %>
+    <p>
+      <%= question.content %><br>
+      <%= question.updated_at %>
+    </p>
+  <% end %>
+<% end %>

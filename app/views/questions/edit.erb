@@ -1,0 +1,7 @@
+<h2>That's not what I wanted to aks!</h2>
+
+<form action="/questions/<%= @question.id %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  <input type="text" name="content" value="<%= @question.content %>">
+  <input id="submit" type="submit" name="submit" value="Edit Question">
+</form>
