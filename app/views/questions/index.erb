@@ -5,6 +5,6 @@
   <ul>
   <% Question.all.each do |question| %>
     <li><a href="/questions/<%= question.id %>"><%= question.content %><a></a><br>
-      <%= question.updated_at %></li>
+      aksed by: <a href="/users/<%= question.author.slug %>"><%= question.author.username %></a> <%= question.updated_at %></li>
   <% end %>
 <% end %>

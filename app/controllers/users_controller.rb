@@ -1,16 +1,12 @@
 class UsersController < ApplicationController
 
   get '/signup' do
-    if logged_in?
-      redirect to '/questions'
-    end
+    redirect to '/questions' unless !logged_in?
     erb :'users/signup'
   end
 
   post '/signup' do
-    if logged_in?
-      redirect to '/questions'
-    elsif params[:user].values.include?('')
+    if params[:user].values.include?('')
       redirect to '/signup'
     else
       user = User.new(params[:user])
@@ -23,9 +19,7 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
-    if logged_in?
-      redirect to '/questions'
-    end
+    redirect to '/questions' unless !logged_in?
     erb :'users/login'
   end
 

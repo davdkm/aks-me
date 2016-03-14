@@ -26,7 +26,7 @@ class QuestionsController < ApplicationController
   get '/questions/:id/edit' do
     redirect_if_not_logged_in
     @question = Question.find_by_id(params[:id])
-    if @question
+    if @question && @question.author == current_user
       erb :'questions/edit'
     else
       redirect to '/login'
