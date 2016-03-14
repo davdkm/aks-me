@@ -1,0 +1,7 @@
+<h2>That's not what I wanted to say!</h2>
+
+<form action="/comments/<%= @comment.id %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  <input type="textarea" name="content" value="<%= @comment.content %>">
+  <input id="submit" type="submit" name="submit" value="Edit Comment">
+</form>

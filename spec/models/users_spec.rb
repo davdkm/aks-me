@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "User" do
   before do
-    @user = User.create(:username => "Run Simmons")
+    @user = User.create(:username => "Run Simmons", :email => "test@email.com", :password => "test")
 
     whos_house =  Question.create(:content => "Who's house?", :author => @user)
     walk_which_way = Question.create(:content => "Walk which way?", :author => @user)

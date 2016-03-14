@@ -5,3 +5,11 @@
     <li><a href="/questions/<%= question.id %>"><%= question.content %></a></li>
   <% end %>
 </ul>
+
+<h4><%= @user.username %> commented:</h4>
+
+<ul>
+  <% @user.comments.each do |comment| %>
+    <li><a href="/questions/<%= comment.question.id %>"><%= comment.content %></a></li>
+  <% end %>
+</ul>

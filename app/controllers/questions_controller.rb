@@ -53,6 +53,7 @@ class QuestionsController < ApplicationController
     redirect_if_not_logged_in
     question = Question.find_by_id(params[:id])
     if question.author == current_user
+      question.comments.each{|comment| comment.delete}
       question.delete
       redirect to '/questions'
     else

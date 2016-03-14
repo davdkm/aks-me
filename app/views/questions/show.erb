@@ -3,11 +3,22 @@
   <%= @question.content %>
 </p>
 
-<form action="/questions/<%= @question.id %>" method="get">
-  <input type="button" name="edit" value="Edit Question">
-</form>
+<a href="/questions/<%= @question.id %>/edit"><button type="button" name="edit">Edit Question</button></a>
 
 <form action="/questions/<%= @question.id %>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <button type="submit" name="delete">Delete Question</button>
 </form>
+
+<h3>Write a Comment!</h3>
+<form action="/questions/comments/<%= @question.id %>" method="post">
+  <input type="textarea" name="content" id="content">
+  <input type="submit" name="comment" id="comment" value="Comment">
+</form>
+
+<ul>
+  <% @question.comments.each do |comment| %>
+    <li><%= comment.commenter.username %> sed:<br>
+        <a href="/comments/<%= comment.id %>"><%= comment.content %></a></li>
+  <% end %>
+</ul>
