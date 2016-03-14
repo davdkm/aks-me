@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    if params[:user].values.include?('')
+    if params[:user].values.include?('') || User.find_by_slug(params[:user][:username]) || User.find_by(email: params[:user][:username])
       redirect to '/signup'
     else
       user = User.new(params[:user])
