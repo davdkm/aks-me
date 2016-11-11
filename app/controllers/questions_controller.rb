@@ -12,12 +12,10 @@ class QuestionsController < ApplicationController
 
   post '/questions' do
     redirect_if_not_logged_in
-    question = Question.new(content: params[:content])
-    author = User.find_by_id(session[:id])
+    question = current_user.authored_questions.build(content: params[:content])
     if question.content.empty?
       redirect to '/questions/new'
     else
-      question.author = author
       question.save
       redirect to "/questions/#{question.id}"
     end
@@ -25,8 +23,7 @@ class QuestionsController < ApplicationController
 
   get '/questions/:id/edit' do
     redirect_if_not_logged_in
-    @question = Question.find_by_id(params[:id])
-    if @question && @question.author == current_user
+    if @question = current_user.authored_questions.find_by(id: params[:id])
       erb :'questions/edit'
     else
       redirect to '/login'
