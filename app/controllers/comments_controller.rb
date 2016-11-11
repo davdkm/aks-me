@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
   post '/questions/comments/:id' do
     redirect_if_not_logged_in
     question = Question.find_by_id(params[:id])
-    comment = Comment.new(content: params[:content], commenter: current_user, question: question)
+    comment = question.comments.build(commenter: current_user, content: params[:content])
     comment.save
     redirect to "/questions/#{question.id}"
   end
