@@ -11,14 +11,11 @@ gem 'shotgun'
 gem 'pry'
 gem 'bcrypt'
 
-group :test do
+group :development do
   gem 'rspec'
   gem 'capybara'
   gem 'rack-test'
   gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
-end
-
-group :development do
   gem 'tux'
 end
 
