@@ -22,6 +22,10 @@ class ApplicationController < Sinatra::Base
     def current_user
       User.find_by_id(session[:id])
     end
+
+    def active_page?(path = '')
+      request.path_info == '/' + path
+    end
   end
 
 end
