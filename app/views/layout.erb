@@ -2,24 +2,63 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <title>Aks Me!</title>
   </head>
+  <style>
+    body {
+      padding-top: 75px;
+    }
+
+  </style>
   <body>
-    <nav>
-      <a href="/questions"><button type="button" name="button">Questions being Aksed</button></a>
+    <div class="container">
+      <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Aks Me!</a>
+          </div>
+          <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li class="<%= 'active' if active_page?("questions") %>">
+                <a href="/questions">Questions being Aksed</a>
+              </li>
 
-      <% if logged_in? %>
+            <% if logged_in? %>
 
-        <a href="/questions/new"><button type="button" name="button">Aks a Question</button></a>
-        <a href="/logout"><button type="button" name="button">Log Out</button></a>
-        <p>Welcome, <%=current_user.username %></p>
+              <li class="<%= 'active' if active_page?("users") %>"><a href="/users/<%= current_user.slug %>">Welcome, <%=current_user.username %></a></li>
+              <li class="<%= 'active' if active_page?("questions/new") %>">
+                <a href="/questions/new">Aks a Question</a>
+              </li>
+              <li>
+                <a href="/logout">Log Out</a>
+              </li>
 
-      <% else %>
-        <a href="/signup"><button type="button" name="button">Sign Up</button></a>
-        <a href="/login"><button type="button" name="button">Sign In</button></a>
-      <%end %>
-
-    </nav>
+            <% else %>
+              <li class="<%= 'active' if active_page?("signup") %>">
+                <a href="/signup">Sign Up</a>
+              </li>
+              <li class="<%= 'active' if active_page?("signin") %>">
+                <a href="/login">Sign In</a>
+              </li>
+            <%end %>
+          </ul>
+          </div>
+        </div>
+      </div>
     <%= yield %>
+  </div>
+    <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    </script>
   </body>
 </html>
