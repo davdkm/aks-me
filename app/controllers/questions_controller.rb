@@ -1,7 +1,6 @@
 class QuestionsController < ApplicationController
 
   get '/questions' do
-    redirect_if_not_logged_in
     erb :'questions/index'
   end
 
@@ -41,7 +40,6 @@ class QuestionsController < ApplicationController
   end
 
   get '/questions/:id' do
-    redirect_if_not_logged_in
     @question = Question.find_by_id(params[:id])
     erb :'questions/show'
   end
