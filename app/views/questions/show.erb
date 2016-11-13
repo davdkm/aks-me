@@ -1,24 +1,35 @@
-<h2><a href="/users/<%= @question.author.slug %>"><%= @question.author.username %></a> aksed:</h2>
-<p>
-  <%= @question.content %>
-</p>
+<div class="container">
+  <div class="section">
+    <h4><a href="/users/<%= @question.author.slug %>"><%= @question.author.username %></a> aksed:</h4>
+    <p>
+      <%= @question.content %>
+    </p>
+    <% if @question.author == current_user %>
+      <a href="/questions/<%= @question.id %>/edit"><button type="button" name="edit" class="btn btn-primary btn-sm btn-orange" style="display: inline-block;">Edit</button></a>
 
-<a href="/questions/<%= @question.id %>/edit"><button type="button" name="edit">Edit Question</button></a>
+      <form action="/questions/<%= @question.id %>/delete" method="post" style="display: inline-block;">
+        <input id="hidden" type="hidden" name="_method" value="delete">
+        <button type="submit" name="delete" class="btn btn-danger btn-sm btn-orange"> X </button>
+      </form>
+      <% end %>
+  </div>
 
-<form action="/questions/<%= @question.id %>/delete" method="post">
-  <input id="hidden" type="hidden" name="_method" value="delete">
-  <button type="submit" name="delete">Delete Question</button>
-</form>
-
-<h3>Write a Comment!</h3>
-<form action="/questions/comments/<%= @question.id %>" method="post">
-  <input type="textarea" name="content" id="content">
-  <input type="submit" name="comment" id="comment" value="Comment">
-</form>
-
-<ul>
-  <% @question.comments.each do |comment| %>
-    <li><%= comment.commenter.username %> sed:<br>
-        <a href="/comments/<%= comment.id %>"><%= comment.content %></a></li>
+  <% if logged_in? %>
+    <div class="section">
+      <h4>Write a Comment!</h4>
+      <form action="/questions/comments/<%= @question.id %>" method="post">
+        <input type="textarea" name="content" id="content">
+        <input type="submit" name="comment" id="comment" value="Comment">
+      </form>
+    </div>
   <% end %>
-</ul>
+
+  <div class="section">
+    <ul>
+      <% @question.comments.each do |comment| %>
+        <li><%= comment.commenter.username %> sed:<br>
+            <a href="/comments/<%= comment.id %>"><%= comment.content %></a></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
