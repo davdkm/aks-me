@@ -54,3 +54,16 @@ body {
 .navbar-default .navbar-toggle .icon-bar {
     background-color: #ecf0f1;
 }
+/*button*/
+.btn-orange {
+  background-color: #e74c3c;
+  color: white;
+  border-color: #c0392b;
+}
+.btn-orange:hover {
+  background-color: #c0392b;
+  border-color: #c0392b;
+}
+.btn-orange a:hover {
+  color: #ecf0f1;
+}
