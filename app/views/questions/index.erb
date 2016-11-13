@@ -1,10 +1,11 @@
-<h1>What people are aksing</h1>
-
-<% if logged_in? %>
-  <h2>Welcome, <%= current_user.username %></h2>
-  <ul>
-  <% Question.all.each do |question| %>
-    <li><a href="/questions/<%= question.id %>"><%= question.content %><a></a><br>
-      aksed by: <a href="/users/<%= question.author.slug %>"><%= question.author.username %></a> <%= question.updated_at %></li>
+<h1>What People are Aksing</h1>
+  <% if logged_in? %>
+    <h2>Welcome, <%= current_user.username %></h2>
   <% end %>
-<% end %>
+<div class="section">
+    <ul>
+    <% Question.all.each do |question| %>
+      <li><a href="/questions/<%= question.id %>"><%= question.content %></a><br>
+        aksed by: <a href="/users/<%= question.author.slug %>"><%= question.author.username %></a> <%= question.updated_at %></li>
+    <% end %>
+</div>
