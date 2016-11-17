@@ -88,3 +88,16 @@ body {
   background-color: #f5f5f5;
   text-align: center;
 }
+.pagination > .active > span {
+  color: #ecf0f1;
+  background-color: #e74c3c;
+  border-color: #f5f5f5;
+}
+.pagination > .active > span:hover {
+  background-color: #c0392b;
+  border-color: #f5f5f5;
+}
+.pagination > li > span {
+  color: #ecf0f1;
+  background-color: #e74c3c;
+}
