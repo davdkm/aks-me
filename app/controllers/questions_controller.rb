@@ -1,6 +1,11 @@
-class QuestionsController < ApplicationController
+require 'will_paginate'
+require 'will_paginate/active_record'
+require 'will_paginate-bootstrap'
 
+class QuestionsController < ApplicationController
+helpers WillPaginate::Sinatra::Helpers
   get '/questions' do
+    @questions = Question.paginate(:page => params[:page])
     erb :'questions/index'
   end
 
