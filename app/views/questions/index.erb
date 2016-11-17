@@ -3,10 +3,12 @@
     <h2>Welcome, <%= current_user.username %></h2>
   <% end %>
 <div class="section">
-    <ul>
+    <ul class="list-group">
     <% @questions.each do |question| %>
-      <li><a href="/questions/<%= question.id %>"><%= question.content %></a><br>
-        aksed by: <a href="/users/<%= question.author.slug %>"><%= question.author.username %></a> <%= question.updated_at %></li>
+      <li class="list-group-item"><a href="/questions/<%= question.id %>"><%= question.content %></a><br>
+        <span class="small">
+          aksed by: <a href="/users/<%= question.author.slug %>"><%= question.author.username %></a>  | <%= question.updated_at %></li>
+        </span>
     <% end %>
     </ul>
 </div>

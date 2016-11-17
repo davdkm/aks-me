@@ -1,18 +1,22 @@
 <div class="container">
-  <div class="section">
-    <h4><a href="/users/<%= @question.author.slug %>"><%= @question.author.username %></a> aksed:</h4>
-    <p>
+  <div class="section panel panel-default">
+    <div class="panel-heading">
+      <span><a href="/users/<%= @question.author.slug %>"><%= @question.author.username %></a> aksed:</span>
+    </div>
+    <div class="panel-body">
       <%= @question.content %>
-    </p>
-    <% if @question.author == current_user %>
-      <a href="/questions/<%= @question.id %>/edit"><button type="button" name="edit" class="btn btn-primary btn-sm btn-orange" style="display: inline-block;">Edit</button></a>
-
-      <form action="/questions/<%= @question.id %>/delete" method="post" style="display: inline-block;">
-        <input id="hidden" type="hidden" name="_method" value="delete">
-        <button type="submit" name="delete" class="btn btn-danger btn-sm btn-orange"> X </button>
-      </form>
-      <% end %>
+    </div>
   </div>
+    <% if @question.author == current_user %>
+      <div class="section">
+        <a href="/questions/<%= @question.id %>/edit"><button type="button" name="edit" class="btn btn-primary btn-sm btn-orange" style="display: inline-block;">Edit</button></a>
+
+        <form action="/questions/<%= @question.id %>/delete" method="post" style="display: inline-block;">
+          <input id="hidden" type="hidden" name="_method" value="delete">
+          <button type="submit" name="delete" class="btn btn-danger btn-sm btn-orange"> X </button>
+        </form>
+      </div>
+      <% end %>
 
   <% if logged_in? %>
     <div class="section">
@@ -24,11 +28,24 @@
     </div>
   <% end %>
 
-  <div class="section">
+  <div class="section panel panel-default">
+    <% if @question.comments.count != 0 %>
+      Answers:
+      <% else %>
+      No Answers Yet
+    <% end %>
     <ul>
       <% @question.comments.each do |comment| %>
-        <li><%= comment.commenter.username %> sed:<br>
-            <a href="/comments/<%= comment.id %>"><%= comment.content %></a></li>
+      <div class="well">
+
+        <div class="">
+          <a href="/users/<%= comment.commenter.slug %>"><%= comment.commenter.username %></a> sed:
+        </div>
+        <div class="">
+          <a href="/comments/<%= comment.id %>"><%= comment.content %></a>
+        </div>
+
+      </div>
       <% end %>
     </ul>
   </div>
