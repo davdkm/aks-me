@@ -7,6 +7,8 @@ gem 'rake'
 gem 'require_all'
 gem 'thin'
 gem 'bcrypt'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 group :development do
   gem 'pry'
