@@ -4,8 +4,12 @@
   <% end %>
 <div class="section">
     <ul>
-    <% Question.all.each do |question| %>
+    <% @questions.each do |question| %>
       <li><a href="/questions/<%= question.id %>"><%= question.content %></a><br>
         aksed by: <a href="/users/<%= question.author.slug %>"><%= question.author.username %></a> <%= question.updated_at %></li>
     <% end %>
+    </ul>
+</div>
+<div>
+  <%= will_paginate @questions, renderer: BootstrapPagination::Sinatra %>
 </div>
