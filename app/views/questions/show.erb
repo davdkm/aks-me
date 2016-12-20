@@ -23,10 +23,13 @@
   <% if logged_in? %>
     <div class="section">
       <h4>Write a Comment!</h4>
-      <form action="/questions/comments/<%= @question.id %>" method="post">
-        <input type="textarea" name="content" id="content">
-        <input type="submit" name="comment" id="comment" value="Comment">
-      </form>
+      <div class="form-group">
+        <form action="/questions/comments/<%= @question.id %>" method="post">
+          <textarea class="form-control" name="content" id="content" rows="3"></textarea>
+          <br>
+          <input type="submit" name="comment" id="comment" value="Comment" class="btn btn-orange">
+        </form>
+    </div>
     </div>
   <% end %>
 
