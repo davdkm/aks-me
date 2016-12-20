@@ -103,3 +103,8 @@ body {
   color: #ecf0f1;
   background-color: #e74c3c;
 }
+
+/* panels for questions */
+.list-group-item {
+  border: none;
+}
