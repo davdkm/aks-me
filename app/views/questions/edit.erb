@@ -1,7 +1,21 @@
-<h2>That's not what I wanted to aks!</h2>
-
-<form action="/questions/<%= @question.id %>" method="post">
-  <input id="hidden" type="hidden" name="_method" value="patch">
-  <input type="text" name="content" value="<%= @question.content %>">
-  <input id="submit" type="submit" name="submit" value="Edit Question">
-</form>
+<div class="fluid-container">
+  <div class="row">
+    <div class="col-sm-6 panel-group">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2>That's not what I wanted to aks!</h2>
+        </div>
+        <div class="panel-body">
+          <div class="form-group">
+            <form action="/questions/<%= @question.id %>" method="post">
+              <input id="hidden" type="hidden" name="_method" value="patch">
+              <textarea class="form-control" name="content" id="content" rows="3"><%= @question.content %></textarea>
+              <br>
+              <input type="submit" name="sumbit" value="Edit" id="submit" class="btn btn-orange">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
