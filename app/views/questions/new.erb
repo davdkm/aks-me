@@ -1,6 +1,21 @@
-<h2>Aks a new question</h2>
-<form action="/questions" method="post">
-  <label for="content">What would you like to aks?</label>
-  <input type="text" name="content" id="content">
-  <input type="submit" name="sumbit" value="Aks!" id="submit">
-</form>
+<div class="fluid-container">
+
+  <div class="row">
+    <div class="col-sm-6 panel-group">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2>Aks a question</h2>
+        </div>
+        <div class="panel-body">
+          <div class="form-group">
+            <form action="/questions" method="post">
+              <textarea class="form-control" name="content" id="content" rows="3"></textarea>
+              <br>
+              <input type="submit" name="sumbit" value="Aks!" id="submit" class="btn btn-orange">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
