@@ -1,5 +1,17 @@
 <div class="container">
   <div class="section panel panel-default">
+
+    <% if @question.author == current_user %>
+      <span class="pull-right">
+        <a href="/questions/<%= @question.id %>/edit"><button type="button" name="edit" class="btn btn-primary btn-sm btn-orange" style="display: inline-block;">Edit</button></a>
+
+        <form action="/questions/<%= @question.id %>/delete" method="post" style="display: inline-block;">
+          <input id="hidden" type="hidden" name="_method" value="delete">
+          <button type="submit" name="delete" class="btn btn-danger btn-sm btn-orange"> X </button>
+        </form>
+      </span>
+    <% end %>
+
     <div class="panel-heading">
       <span><a href="/users/<%= @question.author.slug %>"><%= @question.author.username %></a> aksed:</span>
     </div>
@@ -7,16 +19,6 @@
       <%= @question.content %>
     </div>
   </div>
-    <% if @question.author == current_user %>
-      <div class="section">
-        <a href="/questions/<%= @question.id %>/edit"><button type="button" name="edit" class="btn btn-primary btn-sm btn-orange" style="display: inline-block;">Edit</button></a>
-
-        <form action="/questions/<%= @question.id %>/delete" method="post" style="display: inline-block;">
-          <input id="hidden" type="hidden" name="_method" value="delete">
-          <button type="submit" name="delete" class="btn btn-danger btn-sm btn-orange"> X </button>
-        </form>
-      </div>
-      <% end %>
 
   <% if logged_in? %>
     <div class="section">
