@@ -29,7 +29,7 @@
           <br>
           <input type="submit" name="comment" id="comment" value="Comment" class="btn btn-orange">
         </form>
-    </div>
+      </div>
     </div>
   <% end %>
 
@@ -39,19 +39,19 @@
       <% else %>
       No Answers Yet
     <% end %>
+
     <ul>
       <% @question.comments.each do |comment| %>
       <div class="well">
-
-        <div class="">
+        <div class="text-muted">
           <a href="/users/<%= comment.commenter.slug %>"><%= comment.commenter.username %></a> sed:
         </div>
         <div class="">
-          <a href="/comments/<%= comment.id %>"><%= comment.content %></a>
+          <span><%= comment.content %></span>
         </div>
-
       </div>
       <% end %>
     </ul>
+
   </div>
 </div>
