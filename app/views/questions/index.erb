@@ -1,17 +1,31 @@
-<h1>What People are Aksing</h1>
-  <% if logged_in? %>
+<div class="row">
+  <div class="col-sm-12">
+    <h1>What People are Aksing</h1>
+    <% if logged_in? %>
     <h2>Welcome, <%= current_user.username %></h2>
-  <% end %>
-<div class="section">
-    <ul class="list-group">
-    <% @questions.each do |question| %>
-      <li class="list-group-item"><a href="/questions/<%= question.id %>"><%= question.content %></a><br>
-        <span class="small">
-          aksed by: <a href="/users/<%= question.author.slug %>"><%= question.author.username %></a>  | <%= question.updated_at %></li>
-        </span>
     <% end %>
-    </ul>
-</div>
-<div>
-  <%= will_paginate @questions, renderer: BootstrapPagination::Sinatra %>
+  </div>
+  <div class="col-sm-12">
+      <ul class="list-inline">
+      <% @questions.each do |question| %>
+        <li class="list-group-item col-sm-4">
+          <div class="panel-group">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <span class="small">
+                aksed by: <a href="/users/<%= question.author.slug %>"><%= question.author.username %></a>  | <%= question.updated_at %>
+                </span>
+              </div>
+              <div class="panel-body">
+                <a href="/questions/<%= question.id %>"><%= question.content %></a><br>
+              </div>
+            </div>
+          </div>
+        </li>
+      <% end %>
+      </ul>
+  </div>
+  <div>
+    <%= will_paginate @questions, renderer: BootstrapPagination::Sinatra %>
+  </div>
 </div>
