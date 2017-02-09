@@ -1,21 +1,61 @@
-<div class="container">
-  <div class="section">
+  <div class="row">
+    <div class="col-sm-12">
+      <h3><%= @user.username %> aksed:</h3>
+    </div>
+  </div>
 
-    <h3><%= @user.username %> aksed:</h3>
+  <div class="row">
+    <div class="col-sm-12">
+      <ul class="list-inline">
+        <% @questions.each do |question| %>
+          <li class="list-group-item col-sm-4">
+            <div class="panel-group">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <a href="/questions/<%= question.id %>">
+                    <span class="small text-muted">aksed on: <%= question.updated_at %></span>
+                  </a>
+                </div>
+                <div class="panel-body">
+                  <a href="/questions/<%= question.id %>"><%= question.content %></a>
+                </div>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
 
-    <ul class="list-group">
-      <% @user.authored_questions.each do |question| %>
-        <li class="list-group-item"><a href="/questions/<%= question.id %>"><%= question.content %></a></li>
-      <% end %>
-    </ul>
+    <div>
+      <%= will_paginate @questions, :param_name => 'questions_page', renderer: BootstrapPagination::Sinatra %>
+    </div>
+
+  </div>
 
     <h4><%= @user.username %> commented:</h4>
 
-    <ul>
-      <% @user.comments.each do |comment| %>
-        <li><a href="/questions/<%= comment.question.id %>"><%= comment.content %></a></li>
-      <% end %>
-    </ul>
+  <div class="row">
+    <div class="col-sm-12">
+      <ul class="list-inline">
+        <% @comments.each do |comment| %>
+        <li class="list-group-item col-sm-4">
+          <div class="panel-group">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <a href="/questions/<%= comment.question.id %>"><span class="text-muted"><%= comment.question.content %></span></a>
+              </div>
+              <div class="panel-body">
+                <%= comment.content %>
+              </div>
+            </div>
+          </div>
+        </li>
+        <% end %>
 
+      </ul>
+    </div>
+
+    <div>
+      <%= will_paginate @comments, :param_name => 'comments_page', renderer: BootstrapPagination::Sinatra %>
+    </div>
   </div>
-</div>

@@ -2,8 +2,7 @@ body {
   padding-top: 75px;
 }
 .container {
-  width: auto;
-  max-width: 680px;
+  /*width: auto;*/
   padding: 0 15px;
 }
 .section {

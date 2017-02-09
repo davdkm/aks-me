@@ -4,4 +4,5 @@ class Comment < ActiveRecord::Base
              :foreign_key => "user_id"
 
   belongs_to :question
+  self.per_page = 10
 end
