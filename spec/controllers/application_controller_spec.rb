@@ -6,7 +6,7 @@ describe ApplicationController do
     it 'loads the homepage' do
       get '/'
       expect(last_response.status).to eq(200)
-      expect(last_response.body).to include("Welcome to Aks Me!")
+      expect(last_response.body).to include("Welcome to Ask Me!")
     end
   end
 
@@ -174,7 +174,7 @@ describe ApplicationController do
     context 'logged in' do
       it 'lets a user view the questions index if logged in' do
         user1 = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
-        question1 = Question.create(:content => "aksing!", :author_id => user1.id)
+        question1 = Question.create(:content => "asking!", :author_id => user1.id)
 
         user2 = User.create(:username => "silverstallion", :email => "silver@aol.com", :password => "horses")
         question2 = Question.create(:content => "What's the deal with airline food?", :author_id => user2.id)
@@ -293,7 +293,7 @@ describe ApplicationController do
       it 'displays a single question' do
 
         user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
-        question = Question.create(:content => "i am a boss at aksing", :author_id => user.id)
+        question = Question.create(:content => "i am a boss at asking", :author_id => user.id)
 
         visit '/login'
 
@@ -312,7 +312,7 @@ describe ApplicationController do
     context 'logged out' do
       it 'does not let a user view a question' do
         user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
-        question = Question.create(:content => "i am a boss at aksing", :author_id => user.id)
+        question = Question.create(:content => "i am a boss at asking", :author_id => user.id)
         get "/questions/#{question.id}"
         expect(last_response.location).to include("/login")
       end
@@ -326,7 +326,7 @@ describe ApplicationController do
     context "logged in" do
       it 'lets a user view question edit form if they are logged in' do
         user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
-        question = Question.create(:content => "aksing!", :author_id => user.id)
+        question = Question.create(:content => "asking!", :author_id => user.id)
         visit '/login'
 
         fill_in(:username, :with => "becky567")
@@ -339,10 +339,10 @@ describe ApplicationController do
 
       it 'does not let a user edit a question they did not create' do
         user1 = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
-        question1 = Question.create(:content => "aksing!", :author_id => user1.id)
+        question1 = Question.create(:content => "asking!", :author_id => user1.id)
 
         user2 = User.create(:username => "silverstallion", :email => "silver@aol.com", :password => "horses")
-        question2 = Question.create(:content => "can i aks you something?", :author_id => user2.id)
+        question2 = Question.create(:content => "can i ask you something?", :author_id => user2.id)
 
         visit '/login'
 
@@ -358,7 +358,7 @@ describe ApplicationController do
 
       it 'lets a user edit their own question if they are logged in' do
         user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
-        question = Question.create(:content => "aksing!", :author_id => 1)
+        question = Question.create(:content => "asking!", :author_id => 1)
         visit '/login'
 
         fill_in(:username, :with => "becky567")
@@ -366,18 +366,18 @@ describe ApplicationController do
         click_button 'submit'
         visit '/questions/1/edit'
 
-        fill_in(:content, :with => "i love aksing")
+        fill_in(:content, :with => "i love asking")
 
         click_button 'submit'
-        expect(Question.find_by(:content => "i love aksing")).to be_instance_of(Question)
-        expect(Question.find_by(:content => "aksing!")).to eq(nil)
+        expect(Question.find_by(:content => "i love asking")).to be_instance_of(Question)
+        expect(Question.find_by(:content => "asking!")).to eq(nil)
 
         expect(page.status_code).to eq(200)
       end
 
       it 'does not let a user edit a text with blank content' do
         user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
-        question = Question.create(:content => "aksing!", :author_id => 1)
+        question = Question.create(:content => "asking!", :author_id => 1)
         visit '/login'
 
         fill_in(:username, :with => "becky567")
@@ -388,7 +388,7 @@ describe ApplicationController do
         fill_in(:content, :with => "")
 
         click_button 'submit'
-        expect(Question.find_by(:content => "i love aksing")).to be(nil)
+        expect(Question.find_by(:content => "i love asking")).to be(nil)
         expect(page.current_path).to eq("/questions/1/edit")
 
       end
@@ -407,7 +407,7 @@ describe ApplicationController do
     context "logged in" do
       it 'lets a user delete their own question if they are logged in' do
         user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
-        question = Question.create(:content => "aksing!", :author_id => 1)
+        question = Question.create(:content => "asking!", :author_id => 1)
         visit '/login'
 
         fill_in(:username, :with => "becky567")
@@ -416,15 +416,15 @@ describe ApplicationController do
         visit 'questions/1'
         click_button "Delete Question"
         expect(page.status_code).to eq(200)
-        expect(Question.find_by(:content => "aksing!")).to eq(nil)
+        expect(Question.find_by(:content => "asking!")).to eq(nil)
       end
 
       it 'does not let a user delete a question they did not create' do
         user1 = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
-        question1 = Question.create(:content => "aksing!", :author_id => user1.id)
+        question1 = Question.create(:content => "asking!", :author_id => user1.id)
 
         user2 = User.create(:username => "silverstallion", :email => "silver@aol.com", :password => "horses")
-        question2 = Question.create(:content => "can i aks you something?", :author_id => user2.id)
+        question2 = Question.create(:content => "can i ask you something?", :author_id => user2.id)
 
         visit '/login'
 
@@ -434,7 +434,7 @@ describe ApplicationController do
         visit "questions/#{question2.id}"
         click_button "Delete Question"
         expect(page.status_code).to eq(200)
-        expect(Question.find_by(:content => "can i aks you something?")).to be_instance_of(Question)
+        expect(Question.find_by(:content => "can i ask you something?")).to be_instance_of(Question)
         expect(page.current_path).to include('/questions')
       end
 
@@ -442,7 +442,7 @@ describe ApplicationController do
 
     context "logged out" do
       it 'does not load let user delete a question if not logged in' do
-        question = Question.create(:content => "aksing!", :author_id => 1)
+        question = Question.create(:content => "asking!", :author_id => 1)
         visit '/questions/1'
         expect(page.current_path).to eq("/login")
       end

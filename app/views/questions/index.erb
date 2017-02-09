@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-12">
-    <h1>What People are Aksing</h1>
+    <h1>What People are Asking</h1>
     <% if logged_in? %>
     <h2>Welcome, <%= current_user.username %></h2>
     <% end %>
@@ -13,7 +13,7 @@
             <div class="panel panel-default">
               <div class="panel-heading">
                 <span class="small">
-                aksed by: <a href="/users/<%= question.author.slug %>"><%= question.author.username %></a>  | <%= question.updated_at %>
+                asked by: <a href="/users/<%= question.author.slug %>"><%= question.author.username %></a>  | <%= question.updated_at %>
                 </span>
               </div>
               <div class="panel-body">

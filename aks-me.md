@@ -1,6 +1,6 @@
 Idea for sinatra assesment:
 
-Aks Me!
+Ask Me!
 
 A sort of reddit Ask me anything for friends and circle of friends or the great internet population in general. Yahoo answers?
 
